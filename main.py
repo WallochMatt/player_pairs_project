@@ -17,13 +17,13 @@
 import random
 #Note: I could make a while loop in the run game function to start the next game, keep track of score and end game..
 def run_game():
-    player_count = counts_players()
+    number_of_players = counts_players()
     full_deck = makes_deck()
-    #hand = deals(full_deck) #this ran an additional instence
-    test = assign_hands(player_count, full_deck) #may need to uncap, but it works so far
-    pairs = copy_list() #made a dupe
-    #result = checks_results(hand)
-    winner(player_count, pairs)
+    
+    pairs = assign_hands(number_of_players, full_deck) #may need to uncap, but it works so far
+    
+    
+    winner(number_of_players, pairs)
 
 def counts_players():
     amount_of_players = 2#int(input("How many Players? (10 Player limit)")) #going to make a list of players, and I might be able to create a dictionary that way too
@@ -48,45 +48,32 @@ def deals(deck):
     return player_hand
 
 
-def assign_hands(player_count, full_deck):
-    for player in player_count:
-        print(f" Player {str(player + 1)}:") #"HUD" function made obsolete
-        hand = deals(full_deck)
+def assign_hands(number_of_players, full_deck):
+    for player_at_index in range(len(number_of_players)):
+        print(f" Player {str(player_at_index + 1)}:") #"HUD" function made obsolete
+        hand = deals(full_deck) 
         print(hand)
-        pairs = copy_list(hand)
-        #checks_results(hand)
-    return pairs #needed? check here if i get none for pairs or zero, may need to delete
-
+        number_of_pairs = copy_list(hand)  #i know the player set copies alreadt
+    return number_of_pairs
 
 def copy_list(hand):
-    copies = {0} #use length of the set - 1
-    for index in hand:
-        if hand.count(index) > 1:
-            copies.add(index)
-    copies.discard(0)
-    #print(f" {len(copies)} matches")
-    print(len(copies))
+    copies = set()
+    for card in hand:
+        if hand.count(card) > 1:
+            copies.add(card)
+
+    print(f"{len(copies)} Pairs")
     return copies
 
-def winner(players, copies):
-    for player in players:
-        if len(copies) == 0:
-            print("izzero")
-        else:
-            print6
+def winner(number_of_players, pairs):
+    for player in range(len(number_of_players)):
+        if player != len(number_of_players):
+
+            for pair in pairs:
+                if pair == 
+
             
-# def winner(players, copies):
-#     for player in range(len(players)):
-#         #for index in range(0, players):
-#         if len(copies) == 0:
-#             print("No pairs")
-#             #if player != player[-1]:
-#         if player.len(copies) > player[1].len(copies): #find away around this out of range
-#             print(f" Player {str(player + 1)} wins")
-#         elif len(copies) == len(copies[player + 1]):
-#             print("Tie")
-#     # for player in range(len(players)):
-#     #     for index in range(player + 1, len(players)):
+
             
 
 
@@ -95,12 +82,3 @@ def winner(players, copies):
 
 
 run_game()
-
-# def copy_list(hand): #alt for check results
-#     copies = [] # couldn't this be a set?
-#     for index in hand:
-#         if hand.count(index) > 1:
-#             copies.append(index)
-#             hand.remove(index)
-#             #print(f" {len(copies)} matches")
-#             #return copies
