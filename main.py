@@ -19,9 +19,9 @@ import random
 def run_game():
     player_count = counts_players()
     full_deck = makes_deck()
-    hand = deals(full_deck) #this ran an additional instence
+    #hand = deals(full_deck) #this ran an additional instence
     test = assign_hands(player_count, full_deck) #may need to uncap, but it works so far
-    pairs = copy_list(hand) #made a dupe
+    pairs = copy_list() #made a dupe
     #result = checks_results(hand)
     winner(player_count, pairs)
 
@@ -53,9 +53,9 @@ def assign_hands(player_count, full_deck):
         print(f" Player {str(player + 1)}:") #"HUD" function made obsolete
         hand = deals(full_deck)
         print(hand)
-        copy_list(hand)
+        pairs = copy_list(hand)
         #checks_results(hand)
-    return hand #needed?
+    return pairs #needed? check here if i get none for pairs or zero, may need to delete
 
 
 def copy_list(hand):
@@ -68,18 +68,26 @@ def copy_list(hand):
     print(len(copies))
     return copies
 
-
-            
 def winner(players, copies):
     for player in players:
         if len(copies) == 0:
-            print("No pairs")
-        if player != player[-1]:
-            if len(copies) > len(copies[player + 1]): #find away around this out of range
-                print(f" Player {str(player + 1)} wins")
-            elif len(copies) == len(copies[player + 1]):
-                print("Tie")
-
+            print("izzero")
+        else:
+            print6
+            
+# def winner(players, copies):
+#     for player in range(len(players)):
+#         #for index in range(0, players):
+#         if len(copies) == 0:
+#             print("No pairs")
+#             #if player != player[-1]:
+#         if player.len(copies) > player[1].len(copies): #find away around this out of range
+#             print(f" Player {str(player + 1)} wins")
+#         elif len(copies) == len(copies[player + 1]):
+#             print("Tie")
+#     # for player in range(len(players)):
+#     #     for index in range(player + 1, len(players)):
+            
 
 
 
