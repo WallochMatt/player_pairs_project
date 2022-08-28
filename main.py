@@ -16,15 +16,12 @@ def run_game():
         input("Press enter for next round")
 
 def counts_players():
-    #amount_of_players = 4
-    amount_of_players = int(input("How many Players? (10 Player limit)")) #going to make a list of players, and I might be able to create a dictionary that way too
+    amount_of_players = 4
+    #amount_of_players = int(input("How many Players? (10 Player limit)")) #going to make a list of players, and I might be able to create a dictionary that way too
     players = []
     for player in range(amount_of_players):
         players.append(player)
     return players
-    # amount_of_players = 2#int(input("How many Players? (10 Player limit)")) #going to make a list of players, and I might be able to create a dictionary that way too
-    # players = [] * amount_of_players#empty spaces?
-    # return players
 
 
 def makes_deck():
@@ -65,31 +62,19 @@ def find_pairs(hand):
     return copies
 
             
-def declare_winner(player_count):
-    #I have chosen to leave this in a comment mess for the sake of feedback 
-    largest_pairing = 0
-    tie_call = 0
-    for current_player_index in range(len(player_count)):
-        if (player_count[current_player_index] == player_count[largest_pairing]):# and (player_count[current_player_index] != player_count[largest_pairing]):
-             print(f"{get_player_id(largest_pairing)} tied!!")
-             tie_call += 1
+def declare_winner(updated_player_list):
+    highest_pair_count = max(updated_player_list)
+
+    if updated_player_list.count(highest_pair_count) > 1:
+        print("Tie")
         
+    else:
+        current_player = 0
+        for pair_count in updated_player_list:
+            current_player += 1
+            if pair_count == highest_pair_count:
+                print(f"Player {current_player} won")
 
-        # if(player_count[current_player_index] > player_count[largest_pairing]):
-        #     largest_pairing = current_player_index
-
-        # for current_player_index in range(len(player_count)):
-        #     if current_player_index != (len(player_count) - 1):
-
-        #         if current_player_index == player_count[current_player_index + 1]:
-        #             print(f"TIE with {get_player_id(current_player_index)}")
-        #             break
-        #         else:
-        #             pass
-        if(player_count[current_player_index] > player_count[largest_pairing]) and tie_call == 0:
-            largest_pairing = current_player_index
-
-    print(f"{get_player_id(largest_pairing)} won with {player_count[largest_pairing]} pairs!!!")
 
 
 def get_player_id(index):
