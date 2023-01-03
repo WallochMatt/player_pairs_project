@@ -15,14 +15,13 @@ def run_game():
         }
     
         updated_player_list = assign_hands(player_count, deck) #may need to uncap, but it works so far
-        # declare_winner(updated_player_list)
         round += declare_winner(updated_player_list)
-        input("Press enter for next round")
+        input("Press enter for next round, ties are not counted")
 
 
 def counts_players():
     # amount_of_players = 4
-    amount_of_players = int(input("How many Players? (10 Player limit)")) 
+    amount_of_players = int(input("How many players? (10 Player limit. Recommend: 4)")) 
     players = []
     for player in range(amount_of_players):
         players.append(player)
@@ -55,7 +54,6 @@ def assign_hands(player_count, deck):
         game_hand = hand.get("game_hand")
         shown_hand = hand.get("shown_hand")
         print(shown_hand)
-        # print(game_hand)
 
         list_of_pairs = find_pairs(game_hand)
         num_of_pairs = len(list_of_pairs)
